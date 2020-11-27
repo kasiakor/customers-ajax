@@ -4,45 +4,69 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+@using (Html.BeginForm("OnSelectCustomer", "Customer"))
+{
+    @Html.AntiForgeryToken();
+    //var selected = false;
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Customer</title>
-</head>
-<body>
-    <div>
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken();
-            var selected = false;
+    foreach (var customer in Model.Item1)
+    {
+        //if customers[2] from controller == current customer
+        //if (Model.Item2 == customer)
+        //{
+        //    selected = true;
+        //}
+        //else
+        //{
+        //    selected = false;
+        //}
+        //returns radio button input element for each property taht is represented by a specific expression - CustomerNumber
+        //CustomerNumber - id and name attribute
+        //customer.ID is the value
+        <div>
+            @Html.RadioButton("CustomerNumber", customer.ID)
+            @Html.Label(customer.Name)
+        </div>
+    }
+    <input type="submit" id="submitButton" value="Display Details" />
+}
 
-            foreach (var customer in Model.Item1)
-            {
-                //if customers[2] from controller == current customer
-                if (Model.Item2 == customer)
-                {
-                    @Model.Item2.Name
-                    selected = true;
-                }
-                else
-                {
-                    @Model.Item1.IndexOf(customer)
-                    selected = false;
-                }
-                //returns radio button input element for each property taht is represented by a specific expression - CustomerNumber
-                <div>
-                    @Html.RadioButton("CustomerNumber", customer.ID, selected)
-                    @Html.Label(customer.Name)
-                </div>
-            }
-            <input type="button" id="submitButton" value="Display Details" />
-        }
-    </div>
-    @*add partial view and pass customer from tuple*@
-<div>
+@*add partial view and pass customer from tuple*@
+@*Model.Item2 == customers[int.Parse(CustomerNumber)]*@
+<div id="customerInfo">
     @Html.Partial("~/Views/Shared/_CustomerDetails.cshtml", Model.Item2)
 </div>
-</body>
-</html>
+
+
+@*<form action="/Customer/OnSelectCustomer" method="post">
+    <input name="__RequestVerificationToken" type="hidden" value="_M0z4-SaxoRUCRRLrqxdTIlGtOhfw4Jg0g7epz89B_PSCqYba3eRG1JNu_L_x_3Qv8em7v49LCvcPgb-7tuHat-DsUylw-oYF9PwfaO55fA1" />        <div>
+        <input id="CustomerNumber" name="CustomerNumber" type="radio" value="0" />
+        <label for="Gia">Gia</label>
+    </div>
+    <div>
+        <input checked="checked" id="CustomerNumber" name="CustomerNumber" type="radio" value="1" />
+        <label for="Brad">Brad</label>
+    </div>
+    <div>
+        <input id="CustomerNumber" name="CustomerNumber" type="radio" value="2" />
+        <label for="Charles">Charles</label>
+    </div>
+    <div>
+        <input id="CustomerNumber" name="CustomerNumber" type="radio" value="3" />
+        <label for="Daniel">Daniel</label>
+    </div>
+    <div>
+        <input id="CustomerNumber" name="CustomerNumber" type="radio" value="4" />
+        <label for="Evelyn">Evelyn</label>
+    </div>
+    <div>
+        <input id="CustomerNumber" name="CustomerNumber" type="radio" value="5" />
+        <label for="Frank">Frank</label>
+    </div>
+    <div>
+        <input id="CustomerNumber" name="CustomerNumber" type="radio" value="6" />
+        <label for="Anna">Anna</label>
+    </div>
+    <input type="submit" id="submitButton" value="Display Details" />
+</form>*@
+

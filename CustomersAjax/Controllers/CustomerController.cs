@@ -35,5 +35,15 @@ namespace CustomersAjax.Controllers
             //tuple - object model
             return View("Customer", tuple);
         }
+
+        //CustomerNumber is assocciated with customer.ID! in the form, it is selected element
+        public ActionResult OnSelectCustomer(string CustomerNumber)
+        {
+            Tuple<List<Customer>, Customer> tuple;
+            tuple = new Tuple<List<Customer>, Customer>(customers, customers[int.Parse(CustomerNumber)]);
+
+            //tuple - object model
+            return View("Customer", tuple);
+        }
     }
 }
