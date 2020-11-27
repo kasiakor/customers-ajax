@@ -10,7 +10,7 @@
     };
 }
 
-@using (Ajax.BeginForm("OnSelectCustomer", "Customer", ajaxOptions))
+@using (Ajax.BeginForm("OnSelectCustomer", "Customer", ajaxOptions, new { id = "customerForm"}))
 {
     @Html.AntiForgeryToken();
     //var selected = false;
@@ -30,11 +30,11 @@
         //CustomerNumber - id and name attribute
         //customer.ID is the value
         <div>
-            @Html.RadioButton("CustomerNumber", customer.ID)
+            @Html.RadioButton("CustomerNumber", customer.ID, new { onchange = "$('#customerForm').trigger('submit')" })
             @Html.Label(customer.Name)
         </div>
     }
-    <input type="submit" id="submitButton" value="Display Details" />
+    @*<input type="submit" id="submitButton" value="Display Details" />*@
 }
 
 @*add partial view and pass customer from tuple*@
