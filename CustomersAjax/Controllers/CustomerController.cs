@@ -43,7 +43,7 @@ namespace CustomersAjax.Controllers
             tuple = new Tuple<List<Customer>, Customer>(customers, customers[int.Parse(CustomerNumber)]);
 
             //tuple - object model
-            return View("Customer", tuple);
+            return PartialView("_CustomerDetails", tuple.Item2);
         }
     }
 }
