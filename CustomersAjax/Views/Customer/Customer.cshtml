@@ -1,6 +1,7 @@
-﻿
+﻿@using CustomersAjax.Models
+@model Tuple<List<Customer>, Customer>
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -11,7 +12,26 @@
     <title>Customer</title>
 </head>
 <body>
-    <div> 
+    <div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken();
+            var selected = false;
+
+            foreach (var customer in Model.Item1)
+            {
+                if(Model.Item1.IndexOf(customer) == 0)
+                {
+                    selected = true;
+                }
+                //returns radio button input element for each property taht is represented by a specific expression - CustomerNumber
+                <div>
+                    @Html.RadioButton("CustomerNumber", customer.ID, selected)
+                    @Html.Label(customer.Name)
+                </div>
+            }
+            <input type="button" id="submitButton" value="Display Details" />
+        }
     </div>
 </body>
 </html>

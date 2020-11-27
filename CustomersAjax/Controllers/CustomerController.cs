@@ -18,13 +18,13 @@ namespace CustomersAjax.Controllers
         public CustomerController()
         {
             customers = new List<Customer>();
-            customers.Add(new Customer(0, "Anna", 34));
+            customers.Add(new Customer(0, "Gia", 34));
             customers.Add(new Customer(1, "Brad", 23));
             customers.Add(new Customer(2, "Charles", 48));
             customers.Add(new Customer(3, "Daniel", 12));
             customers.Add(new Customer(4, "Evelyn", 85));
             customers.Add(new Customer(5, "Frank", 58));
-            customers.Add(new Customer(3, "Gia", 3));
+            customers.Add(new Customer(6, "Anna", 3));
         }
         // GET: Customer
         public ActionResult Index()
