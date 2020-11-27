@@ -30,7 +30,7 @@ namespace CustomersAjax.Controllers
         public ActionResult Index()
         {
             Tuple<List<Customer>, Customer> tuple;
-            tuple = new Tuple<List<Customer>, Customer>(customers, customers[0]);
+            tuple = new Tuple<List<Customer>, Customer>(customers, customers[2]);
 
             //tuple - object model
             return View("Customer", tuple);
